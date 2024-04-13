@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block block-content %}
+<h1>Contribution de Membre</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+        {{ form.nom_membre.errors }}
+        <label for="id_nom_membre">Nom Membre:</label>
+        {{ form.nom_membre }}
+    </div>
+    <div>
+        {{ form.mail.errors }}
+        <label for="id_mail">Email:</label>
+        {{ form.mail }}
+    </div>
+    <div>
+        {{ form.sujet.errors }}
+        <label for="id_sujet">Sujet:</label>
+        {{ form.sujet }}
+    </div>
+    <div>
+        {{ form.text.errors }}
+        <label for="id_text">Texte:</label>
+        {{ form.text }}
+    </div>
+    <button type="submit">Envoyer</button>
+</form>
+{% endblock block-content%}

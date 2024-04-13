@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block block-content %}
+    <section class="detail my-5"> 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-6 d-flex flex-column">
+                    <img src="{{ activite.image.url }}" alt="" width="600" height="600">
+                    <div>
+                        <h1>{{ activite.title }}</h1>
+                        <h4>{{ activite.lieu }}</h4>
+                        <p>{{ activite.date }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <p>{{ activite.description }}</p>
+                </div>
+            </div>
+            
+        </div>
+       
+    </section>
+{% endblock block-content %}
+    

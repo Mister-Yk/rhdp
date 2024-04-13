@@ -1,0 +1,119 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block block-content %}
+<div class="container my-5">
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row my-3">
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_nom_membre">Nom :</label>
+                <input type="text" class="form-control" id="id_nom_membre" name="nom_membre">
+            </div>
+        
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_prenom_membre">Prénom :</label>
+                <input type="text" class="form-control" id="id_prenom_membre" name="prenom_membre">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_date_of_birth">Date de naissance :</label>
+                <input type="date" class="form-control" id="id_date_of_birth" name="date_of_birth">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_num_cni">Numéro CNI :</label>
+                <input type="text" class="form-control" id="id_num_cni" name="num_cni">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_num_cei">Numéro Carte d'Electeur :</label>
+                <input type="text" class="form-control" id="id_num_cei" name="num_cei">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_lieu_de_vote">Lieu de vote :</label>
+                <input type="text" class="form-control" id="id_lieu_de_vote" name="lieu_de_vote">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_contact">Contact :</label>
+                <input type="text" class="form-control" id="id_contact" name="contact">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_profession">Profession :</label>
+                <input type="text" class="form-control" id="id_profession" name="profession">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_post_parti">Poste au parti :</label>
+                <input type="text" class="form-control" id="id_post_parti" name="post_parti">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_mail">Entrez votre E-mail :</label>
+                <input type="email" class="form-control" id="id_mail" name="mail">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_image">Ajoutez votre photo:</label>
+                <input type="file" class="form-control-file" id="id_image" name="image">
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_commune">Precisez Votre Commune:</label>
+                <select class="form-control" id="id_commune" name="commune">
+                    {% for commune in communes %}
+                        <option value="{{ commune.id }}">{{ commune.nom_com }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_departement">Precisez Votre Département :</label>
+                <select class="form-control" id="id_departement" name="departement">
+                    {% for departement in departements %}
+                        <option value="{{ departement.id }}">{{ departement.nom_dept }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_zone">Precisez Votre Zone :</label>
+                <select class="form-control" id="id_zone" name="zone">
+                    {% for zone in zones %}
+                        <option value="{{ zone.id }}">{{ zone.nom_zone }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_secteur">Precisez Votre Secteur :</label>
+                <select class="form-control" id="id_secteur" name="secteur">
+                    {% for secteur in secteurs %}
+                        <option value="{{ secteur.id }}">{{ secteur.nom_secteur }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-4 my-4 form-group">
+                <label for="id_comite">Precisez Votre Comité :</label>
+                <select class="form-control" id="id_comite" name="comite">
+                    {% for comite in comites %}
+                        <option value="{{ comite.id }}">{{ comite.nom_comite }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+        </div>
+
+        {% if form.errors %}
+            <div class="alert alert-danger my-3">
+                <strong>Il y a des erreurs dans le formulaire :</strong>
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }} : {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        {% for mgs in messages  %}
+            <div class="alert alert-{{mgs.tags}}" role="alert">
+                {{mgs}}
+            </div>         
+        {% endfor %}
+        <button type="submit" class="btn btn-primary my-4">Enregistrer</button>
+
+    </form>
+</div>
+{% endblock block-content %}
+    

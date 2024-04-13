@@ -1,0 +1,65 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block block-content %}
+<section class="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 my-4">
+          <div class="contact-map box">
+            <div id="map" class="contact-map my-3">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15889.9494493849!2d-4.02220025981071!3d5.342317407909879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1eba77cfdac53%3A0xa80b448a068da1e0!2sSi%C3%A8ge%20RHDP!5e0!3m2!1sfr!2sci!4v1711988882680!5m2!1sfr!2sci" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        </div>
+        <div class="col-sm-12 section-t8">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-7">
+              <form action="{% url 'contact' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control form-control-lg form-control-a" placeholder="Votre nom">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <input name="mail" type="email" class="form-control form-control-lg form-control-a" placeholder="Votre adresse e-mail">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea name="text" class="form-control" cols="45" rows="8" placeholder="Votre message"></textarea>
+                        </div>
+                    </div>
+                    {% if form.errors %}
+                    <div class="alert alert-danger my-3">
+                        <strong>Il y a des erreurs dans le formulaire :</strong>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ field.label }} : {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {% for mgs in messages  %}
+                    <div class="alert alert-{{mgs.tags}}" role="alert">
+                        {{mgs}}
+                    </div>
+                                
+                    {% endfor %}
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary my-3">Envoyer le message</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock block-content %}
+    

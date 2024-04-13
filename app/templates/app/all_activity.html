@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block block-content %}
+
+<section class="activites">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+        
+            {% for activite in activites  %}
+            <div class="col">
+                <div class="card h-100">
+                  <a href="{% url 'detail' pk=activite.pk %}"><img src="{{ activite.image.url }}" class="card-img-top" alt="..."></a>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ activite.title }}</h5>
+                    <p class="card-text"> {{ activite.date }} </p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">{{ activite.lieu }}</small>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+                
+            
+          </div>
+    </div>
+   
+</section>
+    
+{% endblock block-content %}
+    

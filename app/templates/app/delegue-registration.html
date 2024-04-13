@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Category{% endblock title %}
+
+{% block main-content %}
+
+<section class="delegue-registration">
+    <form action="" method="post" novalidate class="shadow p-5">
+        {% csrf_token %}
+        {% for fm in form  %}
+            {{fm.label_tag}} {{fm}}
+        {% endfor %}
+
+    </form>
+</section>
+
+
+{% endblock main-content %}
